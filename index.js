@@ -33,12 +33,19 @@ export default class Omniture extends React.Component {
     events: ""
   }
 
-  componentDidMount(){
+  startMonitoring(){
     window.s = s_gi((process.env.NODE_ENV === "production") ? 'economistcomprod' :  'economistcomdev');
-    // Add here s variables for the page
-    window.s = Object.assign(s, this.props);
+    window.s = Object.assign(s, this.props)
     var s_code = s.t();
     s_code ? document.write(s_code) : null;
+  }
+
+  componentDidMount(){
+    window.addEventListener('load', this.startMonitoring);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('load', this.startMonitoring);
   }
 
   render() {
