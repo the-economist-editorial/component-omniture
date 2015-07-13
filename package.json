@@ -13,18 +13,11 @@
     "url": "https://github.com/the-economist-editorial/omniture/issues"
   },
   "main": "index.js",
-  "browserify": {
-    "transform": [
-      [
-        "babelify",
-        {
-          "stage": 0
-        }
-      ]
-    ]
-  },
   "eslintConfig": {
-    "extends": "strict/react"
+    "extends": "strict/react",
+    "env": {
+      "browser": true
+    }
   },
   "component-devserver": {
     "example": "./example.es6",
@@ -81,14 +74,11 @@
     "@economist/component-devserver": "^2.0.0",
     "@economist/component-testharness": "^1.1.0",
     "babel": "^5.5.8",
-    "babelify": "^6.1.2",
-    "browserify": "^10.2.4",
     "eslint": "^0.24.0",
     "eslint-config-strict": "^2.4.0",
     "eslint-plugin-filenames": "^0.1.1",
     "eslint-plugin-one-variable-per-var": "^0.0.3",
     "eslint-plugin-react": "^2.6.3",
-    "minifyify": "^7.0.1",
     "mocha": "^2.2.5",
     "pre-commit": "^1.0.10"
   },

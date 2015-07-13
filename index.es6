@@ -2,45 +2,59 @@ import React from 'react';
 
 export default class Omniture extends React.Component {
 
-  static defaultProps = {
-    visitorNamespace: "economist",
-    trackingServer: "stats.economist.com",
-    trackingServerSecure: "sstats.economist.com",
-    dc: "122",
-    linkTrackVars: "pageName,channel,events,prop1,prop3,prop4,prop5,prop11,prop13,prop14,prop31,prop34,prop40,prop41,prop42,prop46,contextData.subsection",
-    pageName:  "",
-    pageType:  "",
-    server:  "",
-    channel:  "",
-    contextData: {
-      subsection:  ""
-    },
-    prop1:  "",
-    prop2:  "",
-    prop3:  "web",
-    prop4:  "",
-    prop5:  "",
-    prop11:  "",
-    prop13:  "",
-    prop14:  "",
-    prop31:  "",
-    prop34:  "",
-    prop40:  "",
-    prop41:  "",
-    prop42 :  "",
-    prop46: "",
-    linkTrackEvents: "",
-    events: ""
+  get defaultProps() {
+    return {
+      visitorNamespace: 'economist',
+      trackingServer: 'stats.economist.com',
+      trackingServerSecure: 'sstats.economist.com',
+      dc: '122',
+      linkTrackVars: [
+        'pageName',
+        'channel',
+        'events',
+        'prop1',
+        'prop3',
+        'prop4',
+        'prop5',
+        'prop11',
+        'prop13',
+        'prop14',
+        'prop31',
+        'prop34',
+        'prop40',
+        'prop41',
+        'prop42',
+        'prop46',
+        'contextData.subsection',
+      ].join(''),
+      pageName: '',
+      pageType: '',
+      server: '',
+      channel: '',
+      contextData: {
+        subsection: '',
+      },
+      prop1: '',
+      prop2: '',
+      prop3: 'web',
+      prop4: '',
+      prop5: '',
+      prop11: '',
+      prop13: '',
+      prop14: '',
+      prop31: '',
+      prop34: '',
+      prop40: '',
+      prop41: '',
+      prop42: '',
+      prop46: '',
+      linkTrackEvents: '',
+      events: '',
+    };
   }
 
-  startMonitoring(){
-    window.s = s_gi((process.env.NODE_ENV === "production") ? 'economistcomprod' :  'economistcomdev');
-    window.s = Object.assign(s, this.props)
-    var s_code = s.t();
-    s_code ? document.write(s_code) : null;
-  }
 
-  componentDidMount(){
+  componentDidMount() {
     window.addEventListener('load', this.startMonitoring);
   }
 
@@ -48,9 +62,23 @@ export default class Omniture extends React.Component {
     window.removeEventListener('load', this.startMonitoring);
   }
 
+  startMonitoring() {
+    if (window.s_gi) {
+      window.s = window.s_gi((process.env.NODE_ENV === 'production') ? 'economistcomprod' : 'economistcomdev');
+      window.s = Object.assign(window.s, this.props);
+      const omnitureTrackingCode = window.s.t();
+      if (omnitureTrackingCode) {
+        document.write(omnitureTrackingCode);
+      }
+    }
+  }
+
   render() {
     return (
-      <script type="text/javascript" src="https://cdn.static-economist.com/sites/default/files/external/ec_omniture/3_2/ec_omniture_s_code.js"></script>
+      <script
+        type="text/javascript"
+        src="https://cdn.static-economist.com/sites/default/files/external/ec_omniture/3_2/ec_omniture_s_code.js"
+      ></script>
     );
   }
 }
