@@ -43,7 +43,7 @@
       {
         "contents": "chai.should();mocha.setup('bdd');"
       },
-      "/test/index.es6?debug&external=react",
+      "/test/index.es6?babelify&debug&external=react",
       {
         "contents": "mocha.checkLeaks();mocha.run();"
       }
@@ -67,6 +67,7 @@
     "test:watch": "npm run test:base -- -wR min"
   },
   "dependencies": {
+    "lodash.assign": "^3.2.0",
     "react": "^0.13.3"
   },
   "devDependencies": {

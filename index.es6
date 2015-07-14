@@ -1,4 +1,5 @@
 import React from 'react';
+import assign from 'lodash.assign';
 
 export default class Omniture extends React.Component {
 
@@ -53,7 +54,6 @@ export default class Omniture extends React.Component {
     };
   }
 
-
   componentDidMount() {
     window.addEventListener('load', this.startMonitoring);
   }
@@ -65,7 +65,7 @@ export default class Omniture extends React.Component {
   startMonitoring() {
     if (window.s_gi) {
       window.s = window.s_gi((process.env.NODE_ENV === 'production') ? 'economistcomprod' : 'economistcomdev');
-      window.s = Object.assign(window.s, this.props);
+      window.s = assign(window.s, this.props);
       const omnitureTrackingCode = window.s.t();
       if (omnitureTrackingCode) {
         document.write(omnitureTrackingCode);
