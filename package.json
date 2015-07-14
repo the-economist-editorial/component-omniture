@@ -48,7 +48,7 @@
       {
         "contents": "chai.should();mocha.setup('bdd');"
       },
-      "/test/index.es6?babelify&debug&external=react",
+      "/test/index.es6?debug&external=react",
       {
         "contents": "mocha.checkLeaks();mocha.run();"
       }
