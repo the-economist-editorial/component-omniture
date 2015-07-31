@@ -54,8 +54,12 @@ export default class Omniture extends React.Component {
     };
   }
 
+  constructor(props) {
+    super(props);
+    this.startMonitoring = this.startMonitoring.bind(this);
+  }
+
   componentDidMount() {
-    this.startMonitoring();
     window.addEventListener('load', this.startMonitoring);
   }
 
