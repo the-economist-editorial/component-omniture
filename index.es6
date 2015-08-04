@@ -63,6 +63,10 @@ export default class Omniture extends React.Component {
     window.addEventListener('load', this.startMonitoring);
   }
 
+  componentDidUpdate() {
+    this.startMonitoring();
+  }
+
   componentWillUnmount() {
     window.removeEventListener('load', this.startMonitoring);
   }
