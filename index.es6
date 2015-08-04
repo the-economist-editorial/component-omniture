@@ -82,7 +82,7 @@ export default class Omniture extends React.Component {
     return (
       <script
         type="text/javascript"
-        src="https://cdn.static-economist.com/sites/default/files/external/ec_omniture/3_2/ec_omniture_s_code.js"
+        src="https://cdn.static-economist.com/sites/default/files/external/ec_omniture/3_2_1/ec_omniture_s_code.min.js"
       ></script>
     );
   }
