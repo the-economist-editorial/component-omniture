@@ -2,7 +2,6 @@ import React from 'react';
 import assign from 'lodash.assign';
 
 let windowHasLoaded = false;
-
 export default class Omniture extends React.Component {
 
   get defaultProps() {
