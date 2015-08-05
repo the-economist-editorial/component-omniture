@@ -1,6 +1,7 @@
 import React from 'react';
 import assign from 'lodash.assign';
 
+let windowHasLoaded = false;
 export default class Omniture extends React.Component {
 
   get defaultProps() {
@@ -60,7 +61,12 @@ export default class Omniture extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('load', this.startMonitoring);
+    if (windowHasLoaded) {
+      this.startMonitoring();
+    } else {
+      window.addEventListener('load', this.startMonitoring);
+      windowHasLoaded = true;
+    }
   }
 
   componentDidUpdate() {
