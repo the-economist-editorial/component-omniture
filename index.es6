@@ -3,7 +3,7 @@ import assign from 'lodash.assign';
 
 let windowHasLoaded = false;
 export default class Omniture extends React.Component {
-
+  /* eslint-disable id-match, id-short, id-length */
   get defaultProps() {
     return {
       visitorNamespace: 'economist',
