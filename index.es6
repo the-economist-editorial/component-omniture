@@ -89,6 +89,11 @@ export default class Omniture extends React.Component {
   }
 
   render() {
+    // For clientside rendering force to trigger the monitoring immediately.
+    if (typeof window !== 'undefined') {
+      windowHasLoaded = true;
+      return null;
+    }
     return (
       <script
         type="text/javascript"
