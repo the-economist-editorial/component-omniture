@@ -3,7 +3,7 @@ import assign from 'lodash.assign';
 
 let windowHasLoaded = false;
 export default class Omniture extends React.Component {
-
+  /* eslint-disable id-match, id-short, id-length */
   get defaultProps() {
     return {
       visitorNamespace: 'economist',
@@ -89,10 +89,15 @@ export default class Omniture extends React.Component {
   }
 
   render() {
+    // For clientside rendering force to trigger the monitoring immediately.
+    if (typeof window !== 'undefined') {
+      windowHasLoaded = true;
+      return null;
+    }
     return (
       <script
         type="text/javascript"
-        src="https://cdn.static-economist.com/sites/default/files/external/ec_omniture/3_2/ec_omniture_s_code.js"
+        src="https://cdn.static-economist.com/sites/default/files/external/ec_omniture/3_5/ec_omniture_s_code.js"
       ></script>
     );
   }
